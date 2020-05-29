@@ -1,6 +1,21 @@
-<div>
-  <h1>{{course.title}}</h1>
-
-  <img src="{{course.img}}" alt="{{course.title}}">
-  <p class="price big">{{course.price}}</p>
+    
+<div class="row center-align">
+  <div >
+    <div class="col s12 ">
+      <div class="card ">
+        <div class="card-image">
+          <img src="{{img}}" alt="{{title}}">          
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{title}}</span>
+          <p class="price">{{price}}</p>
+        </div>
+        <div class="card-action actions">
+          
+          <a href="/courses/{{id}}/edit?allow=true">Edit</a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

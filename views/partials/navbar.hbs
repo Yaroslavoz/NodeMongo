@@ -33,6 +33,16 @@
           </li>
         {{/if}}
 
+        {{#if isCart}}
+          <li class="active">
+            <a href="/card">Cart</a>
+          </li>
+        {{else}}
+          <li>
+            <a href="/card">Cart</a>
+          </li>
+        {{/if}}
+
       </ul>
     </div>
   </nav>
