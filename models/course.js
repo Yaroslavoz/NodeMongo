@@ -19,7 +19,11 @@ const course = new Schema({
       type: Number,
       required: true
     },
-    img: String
+    img: String,
+    userId: {
+      type:  Schema.Types.ObjectId,
+      ref: 'User' 
+    }
   
 
 }, opts)

@@ -8,6 +8,7 @@ const addRoute = require('./routes/add')
 const courseRoute = require('./routes/courses')
 const path = require('path')
 const mongoose = require('mongoose')
+const User = require('./models/user')
 
 
 const app = express()
@@ -16,6 +17,16 @@ const app = express()
 //   defaultLayout: 'main',
 //   extname: '.hbs'
 // })
+app.use(async (req, res, next)=>{
+  try {
+    const user = await User.findById('5ed16f2413caf144500cf391')
+    req.user = user
+    next()
+  } catch (error) {
+    console.log(error);
+  }
+  
+})
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended: true}))
@@ -31,6 +42,8 @@ app.set('view engine', 'hbs')
 app.set('views', 'views')
 
 
+
+
 const PORT = process.env.PORT || 3000
 
 const start = async () => {
@@ -41,6 +54,15 @@ const start = async () => {
       useFindAndModify: false,
       useUnifiedTopology: true
     })
+    const candidate = await User.findOne()
+    if (!candidate) {
+      const user = new User({
+       email: 'yaroslavoz@gmail.com',
+       name: 'Yaroslavoz',
+       cart: {items: []} 
+      })
+      await user.save()
+    }
     app.listen(PORT, () => {
       console.log(` Server is running on port ${PORT}`);
       

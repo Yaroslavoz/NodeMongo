@@ -1,13 +1,6 @@
 const {Schema, model} = require('mongoose')
 
-const opts = {
-  toObject: {
-    virtuals: true
-  },
-  toJSON: {
-    virtuals: true
-  }
-}
+
 
 const userSchema = new Schema({
   email: {
@@ -35,6 +28,7 @@ const userSchema = new Schema({
       }
     ]
   }
-}, opts)
+})
+
 
 module.exports = model('User', userSchema)
